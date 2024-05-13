@@ -1,0 +1,17 @@
+{% extends "pooque/base.html" %}
+{% block title %}
+    Welcome
+{% endblock title %}
+{% block container_classes %}
+    flex flex-col items-center justify-center
+{% endblock container_classes %}
+{% block content %}
+    <form method="post" class="flex min-h-full gap-4">
+        {% csrf_token %}
+        <input type="text"
+               name="name"
+               placeholder="Enter Your Name"
+               class="w-full max-w-xs input input-bordered" />
+        <button class="btn">Submit</button>
+    </form>
+{% endblock content %}

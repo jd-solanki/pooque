@@ -1,0 +1,27 @@
+[project]
+name = "pooque"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "jd-solanki", email = "jdsolanki0001@gmail.com" }
+]
+dependencies = [
+    "django>=5.0.6",
+    "djlint>=1.34.1",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pooque"]

@@ -1,0 +1,13 @@
+{% extends "pooque/base.html" %}
+{% block title %}
+    Error
+{% endblock title %}
+{% block content %}
+    <div>
+        <h1>Oops, Something went wrong.</h1>
+        <hr>
+        <ul>
+            {% for error in errors %}<li>{{ error }}</li>{% endfor %}
+        </ul>
+    </div>
+{% endblock content %}

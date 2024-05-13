@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "batisteo.vscode-django",
+        "monosans.djlint",
+        "tamasfe.even-better-toml",
+        "heybourn.headwind",
+        "xabikos.javascriptsnippets",
+        "ms-python.mypy-type-checker",
+        "charliermarsh.ruff",
+        "bradlc.vscode-tailwindcss"
+    ]
+}

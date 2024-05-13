@@ -1,0 +1,63 @@
+{% extends "pooque/base.html" %}
+{% block title %}
+    Waiting List
+{% endblock title %}
+{% block container_classes %}
+    flex flex-col items-center justify-center max-w-64
+{% endblock container_classes %}
+{% block content %}
+    <p class="text-2xl font-medium text-center text-balance">
+        <span>
+            {% if is_already_joined %}
+                You're in queue,
+            {% else %}
+                Welcome to the waiting list,
+            {% endif %}
+        </span><span class="text-yellow-950">{{ request.COOKIES.name }}.</span>
+    </p>
+    {% if waiting_list %}
+        <ul class="flex flex-col w-full gap-2 p-4 my-8 border rounded-lg">
+            {% for person in waiting_list %}
+                <li class="flex items-center text-xl rounded-lg p-2 {% if forloop.first %} {% if person.action == "pee" %}bg-blue-600{% else %}bg-yellow-950{% endif %} text-white font-semibold{% endif %}">
+                    <span>
+                        {% if person.action == "pee" %}
+                            💦
+                        {% else %}
+                            💩
+                        {% endif %}
+                    </span>
+                    <span class="ms-2">{{ person.name }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if not is_already_joined %}
+        <div class="grid w-full gap-4 mt-8 grid-col-2">
+            <em class="col-span-2 text-center">Join the list for</em>
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="pee">
+                <button class="w-full btn btn-outline hover:bg-blue-500 hover:border-blue-500">💦</button>
+            </form>
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="poop">
+                <button class="w-full btn btn-outline hover:bg-yellow-950 hover:border-yellow-950">💩</button>
+            </form>
+        </div>
+    {% endif %}
+    <form action="/done" class="w-full">
+        {% if waiting_list.0.name == request.COOKIES.name %}
+            <button class="w-full btn">🤤 I'm Done</button>
+        {% else %}
+            {% if is_already_joined %}
+                <button class="w-full btn text-balance">
+                    <div class="flex items-center justify-center">
+                        <span>☠️</span>
+                        <span>I lost the connection with the nature</span>
+                    </div>
+                </button>
+            {% endif %}
+        {% endif %}
+    </form>
+{% endblock content %}
